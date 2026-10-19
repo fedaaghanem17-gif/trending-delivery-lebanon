@@ -1,0 +1,20 @@
+
+{
+  "name": "Trending Delivery Lebanon",
+  "short_name": "Trending Delivery",
+  "description": "Order groceries, restaurant meals, and local deliveries in Lebanon.",
+  "start_url": "/trending-delivery-lebanon/",
+  "scope": "/trending-delivery-lebanon/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#168653",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
