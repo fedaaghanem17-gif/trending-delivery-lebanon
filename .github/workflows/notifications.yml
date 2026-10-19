@@ -1,11 +1,7 @@
 
 name: Delivery Notifications
 
-'on':
-  workflow_dispatch:
-
-permissions:
-  contents: read
+'on': workflow_dispatch
 
 jobs:
   notify:
@@ -13,4 +9,3 @@ jobs:
     steps:
       - name: Test workflow
         run: echo "Workflow is running correctly."
-        
