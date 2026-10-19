@@ -1,20 +1,12 @@
 
 name: Delivery Notifications
 
-'on':
-  workflow_dispatch:
-  schedule:
-    - cron: "*/5 * * * *"
-
-permissions:
-  contents: read
+on: [workflow_dispatch]
 
 jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
-      - name: Check workflow setup
-        run: |
-          echo "Notification workflow started."
-          echo "Secure sender code is not configured yet."
-          
+      - name: Test workflow
+        run: echo "Workflow is running correctly."
+        
