@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#14532d">
+<title>Trending Delivery Lebanon</title>
+<style>
+:root{--green:#14532d;--green2:#166534;--cream:#f7f8f4;--ink:#18221b;--muted:#657168;--line:#dfe6df;--white:#fff;--orange:#f59e0b}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.45}
+header{background:linear-gradient(135deg,#14532d,#15803d);color:white;padding:22px 16px 24px}
+.wrap{max-width:980px;margin:auto;padding:0 14px}
+.brand{display:flex;gap:12px;align-items:center}.logo{width:48px;height:48px;border-radius:15px;background:#fff;color:var(--green);display:grid;place-items:center;font-size:26px}
+h1{font-size:clamp(23px,5vw,34px);margin:0}header p{margin:5px 0 0;color:#e4f4e7}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+button,.btn{border:0;border-radius:11px;padding:11px 14px;font:inherit;font-weight:700;cursor:pointer;background:var(--green);color:white}
+nav button{background:#ffffff20;border:1px solid #ffffff45}nav button.active{background:#fff;color:var(--green)}
+main{padding:20px 0 40px}.panel{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:17px;margin:0 0 16px;box-shadow:0 4px 18px #142b1910}
+h2{font-size:21px;margin:0 0 12px}h3{font-size:17px;margin:0 0 8px}.muted,.sub{color:var(--muted);font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+label{display:block;font-size:14px;font-weight:700;margin:10px 0 5px}
+input,select,textarea{width:100%;border:1px solid #cbd5cc;border-radius:10px;padding:11px;background:white;color:var(--ink);font:inherit}
+textarea{min-height:78px;resize:vertical}.category{border:1px solid var(--line);padding:12px;border-radius:13px;background:#fbfdfb}
+.category .emoji{font-size:26px}.category-button{display:block;width:100%;min-height:120px;text-align:left;color:var(--ink);font-weight:400;cursor:pointer;appearance:none;-webkit-appearance:none;touch-action:manipulation;position:relative;z-index:1}.category-button h3{color:var(--green)}.category-button.selected{border:2px solid var(--green);background:#eaf6ec}.category-button:focus-visible{outline:3px solid #f59e0b;outline-offset:2px}.item-row{display:grid;grid-template-columns:minmax(0,1fr) 95px auto;gap:8px;align-items:end;margin:8px 0}.item-row label{margin-top:0}.item-row button{padding:10px 12px}.whish-qr-placeholder{border:1px dashed #9ca3af;border-radius:10px;padding:12px;margin-top:10px;background:#fff;text-align:center;color:var(--muted)}.pill{display:inline-block;background:#e7f5e9;color:#166534;padding:4px 9px;border-radius:999px;font-size:12px;font-weight:700}
+.notice{background:#fff8e7;border:1px solid #f5d58a;border-radius:12px;padding:12px;margin:12px 0;font-size:14px}
+.success{background:#ecfdf3;border:1px solid #a7f3c0;border-radius:12px;padding:12px;margin:12px 0}
+.hidden{display:none!important}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.secondary{background:#e8eee9;color:#173b24}.danger{background:#b91c1c}.small{font-size:12px}.order{border:1px solid var(--line);border-radius:12px;padding:13px;margin:10px 0}.order-head{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}.status{font-weight:800;color:#14532d}.status-select{max-width:220px}footer{text-align:center;color:var(--muted);font-size:13px;padding:20px}
+a{color:#166534;word-break:break-word}
+@media(max-width:480px){.panel{padding:14px}.brand{align-items:flex-start}.logo{flex:0 0 44px;width:44px;height:44px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="brand"><div class="logo">🛵</div><div><h1>Trending Delivery Lebanon</h1><p>Local delivery in Chouf and nearby areas</p></div></div>
+  <nav><button class="active" data-tab="shop">Shop & Order</button><button data-tab="track">Find My Order</button><button data-tab="admin">Admin</button></nav>
+</div></header>
+<main class="wrap">
+<section id="shop" class="tab">
+  <div class="panel"><h2>Welcome! What do you need?</h2><p class="sub">Choose a category and tell us what you would like. The team will confirm availability and delivery details.</p>
+    <div class="grid">
+      <button type="button" class="category category-button" data-category="Fruit & Vegetables" onclick="selectCategory(this)"><div class="emoji">🥬</div><h3>Fruit & Vegetables</h3><p class="muted">Fresh produce and daily essentials.</p></button>
+      <button type="button" class="category category-button" data-category="Grocery & Household" onclick="selectCategory(this)"><div class="emoji">🛒</div><h3>Grocery & Household</h3><p class="muted">Pantry items and home basics.</p></button>
+      <button type="button" class="category category-button" data-category="Restaurants & Cafés" onclick="selectCategory(this)"><div class="emoji">🍽️</div><h3>Restaurants & Cafés</h3><p class="muted">Meals, coffee, desserts and takeaway. Restaurant availability must be confirmed.</p></button>
+      <button type="button" class="category category-button" data-category="Children & Toys" onclick="selectCategory(this)"><div class="emoji">🧸</div><h3>Children & Toys</h3><p class="muted">Toys and children’s items.</p></button>
+      <button type="button" class="category category-button" data-category="Electrical Supplies" onclick="selectCategory(this)"><div class="emoji">🔌</div><h3>Electrical Supplies</h3><p class="muted">Basic electrical and hardware items.</p></button>
+      <button type="button" class="category category-button" data-category="Gifts & Souvenirs" onclick="selectCategory(this)"><div class="emoji">🎁</div><h3>Gifts & Souvenirs</h3><p class="muted">Gift ideas and local finds.</p></button>
+    </div>
+    <div id="categoryItemsArea" class="notice hidden" style="margin-top:14px">
+      <div id="itemsPanel"><strong>Choose a category above</strong></div>
+      <div id="itemRows"></div>
+      <div class="actions"><button id="addItemBtn" type="button" class="secondary">+ Add another item</button></div>
+    </div>
+  </div>
+  <div class="panel"><h2>Place an order</h2>
+    <form id="orderForm">
+      <input id="categoryDisplay" type="hidden" value="">
+      <div class="row">
+        <div><label for="customerName">Your name *</label><input id="customerName" required maxlength="100" autocomplete="name"></div>
+        <div><label for="phone">Phone / WhatsApp *</label><input id="phone" required maxlength="40" autocomplete="tel" placeholder="+961..."></div>
+      </div>
+      <div><label for="town">Service area *</label><select id="town" required><option>Chouf — pilot area</option><option>Other Lebanon area (confirm first)</option></select></div>
+      <label for="itemDetails">Restaurant / shop name or extra item details (optional)</label><textarea id="itemDetails" maxlength="1000" placeholder="For example: restaurant name, brand, size, or preferred option"></textarea>
+      <div class="row">
+        <div><label for="address">Delivery address / village *</label><input id="address" required maxlength="250" placeholder="Village, street, nearby landmark"></div>
+        <div><label for="payment">Payment method *</label><select id="payment" required><option value="Cash on delivery">Cash on delivery</option><option value="Whish Money">Whish Money</option><option value="OMT Wallet">OMT Wallet (coming soon — not available yet)</option></select></div>
+      </div>
+      <label for="notes">Extra notes (optional)</label><textarea id="notes" maxlength="700" placeholder="Preferred time or other instructions"></textarea>
+      <div id="whishInfo" class="notice hidden"><strong>Whish Money instructions</strong><br>Whish account: <strong>+961 70 948 063</strong><br>Submit the order first. Contact the delivery team to confirm the amount and payment steps. Do not send money until the order and amount are confirmed. Payment is not automatically verified by this website.<div class="whish-qr-placeholder"><strong>Whish Money QR / barcode</strong><br>The QR image still needs to be added to this file.</div></div>
+      <div id="omtInfo" class="notice hidden">OMT Wallet is not available yet. Please choose Cash on delivery or Whish Money.</div>
+      <div class="actions"><button type="submit">Submit order</button><button type="reset" class="secondary">Clear form</button></div>
+      <p class="muted small">Submitting an order shares the details above with Trending Delivery Lebanon so the team can process it.</p>
+    </form>
+    <div id="orderResult" class="success hidden" aria-live="polite"></div>
+  </div>
+</section>
+
+<section id="track" class="tab hidden">
+  <div class="panel"><h2>Find my order</h2><p class="sub">Enter the order number shown after submitting. This page can display saved order details only if the database rules allow customer access. For privacy, customer order lookup is not enabled by default.</p>
+    <label for="lookupId">Order number</label><input id="lookupId" placeholder="e.g. TDL-...">
+    <div class="actions"><button id="lookupBtn" type="button">Check order</button></div><div id="lookupResult" class="notice hidden"></div>
+  </div>
+</section>
+
+<section id="admin" class="tab hidden">
+  <div class="panel"><h2>Admin dashboard</h2><p class="sub">Sign in using the Firebase Authentication email and password created for the admin account.</p>
+    <div id="adminLogin">
+      <label for="adminEmail">Admin email</label><input id="adminEmail" type="email" autocomplete="username" required>
+      <label for="adminPassword">Admin password</label><input id="adminPassword" type="password" autocomplete="current-password" required>
+      <div class="actions"><button id="loginBtn" type="button">Sign in</button></div><p id="loginMsg" class="muted" aria-live="polite"></p>
+    </div>
+    <div id="adminArea" class="hidden"><div class="actions"><button id="refreshBtn" type="button">Refresh orders</button><button id="logoutBtn" class="secondary" type="button">Sign out</button></div><p id="adminMsg" class="muted" aria-live="polite"></p><div id="ordersList"></div></div>
+  </div>
+</section>
+</main>
+<footer>Trending Delivery Lebanon · Chouf, Lebanon<br><span class="small">Order requests are subject to confirmation. Delivery fees and availability are confirmed by the team.</span></footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyAHUs-Ah3IxcM7Z4_w9zuKQ0gqkRJYJN2s",
+  authDomain: "trending-delivery-lebanon.firebaseapp.com",
+  databaseURL: "https://trending-delivery-lebanon-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "trending-delivery-lebanon",
+  storageBucket: "trending-delivery-lebanon.firebasestorage.app",
+  messagingSenderId: "392862222633",
+  appId: "1:392862222633:web:eef8cf08cb62d29dc14f38"
+};
+const ADMIN_UID = "DFhtTjondXQkIhaC4YwVJp5VUr12";
+let db = null, auth = null, currentUser = null;
+try { firebase.initializeApp(firebaseConfig); auth=firebase.auth(); db=firebase.database(); }
+catch(e) { console.error(e); }
+
+document.querySelectorAll('nav button').forEach(btn => btn.addEventListener('click', () => {
+  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b===btn));
+  document.querySelectorAll('.tab').forEach(s=>s.classList.toggle('hidden',s.id!==btn.dataset.tab));
+}));
+const payment = document.getElementById('payment');
+function updatePaymentInfo(){
+  document.getElementById('whishInfo').classList.toggle('hidden',payment.value!=='Whish Money');
+  document.getElementById('omtInfo').classList.toggle('hidden',payment.value!=='OMT Wallet');
+}
+payment.addEventListener('change',updatePaymentInfo);
+document.getElementById('orderForm').addEventListener('reset',()=>{setTimeout(()=>{itemRows.innerHTML='';selectedCategory.value='';document.querySelectorAll('.category-button').forEach(b=>b.classList.remove('selected'));itemsPanel.innerHTML='<strong>Choose a category above</strong>';categoryItemsArea.classList.add('hidden');updatePaymentInfo();},0);});
+const selectedCategory=document.getElementById('categoryDisplay');
+const itemRows=document.getElementById('itemRows');
+const itemsPanel=document.getElementById('itemsPanel');
+const categoryItemsArea=document.getElementById('categoryItemsArea');
+function addItemRow(){
+  if(!selectedCategory.value){alert('Please choose a category first.');return;}
+  const row=document.createElement('div'); row.className='item-row';
+  const nameWrap=document.createElement('div'); const nameLabel=document.createElement('label'); nameLabel.textContent='Item name *';
+  const name=document.createElement('input'); name.type='text'; name.className='item-name'; name.required=true; name.maxLength=180; name.placeholder='Enter item'; nameLabel.appendChild(name); nameWrap.appendChild(nameLabel);
+  const qtyWrap=document.createElement('div'); const qtyLabel=document.createElement('label'); qtyLabel.textContent='Quantity *';
+  const qty=document.createElement('input'); qty.type='number'; qty.className='item-qty'; qty.required=true; qty.min='1'; qty.max='999'; qty.value='1'; qtyLabel.appendChild(qty); qtyWrap.appendChild(qtyLabel);
+  const remove=document.createElement('button'); remove.type='button'; remove.className='danger'; remove.textContent='Remove'; remove.addEventListener('click',()=>{row.remove();});
+  row.append(nameWrap,qtyWrap,remove); itemRows.appendChild(row);
+}
+window.selectCategory = function(btn){
+  if(!btn) return;
+  document.querySelectorAll('.category-button').forEach(b=>b.classList.toggle('selected',b===btn));
+  selectedCategory.value=btn.getAttribute('data-category') || '';
+  categoryItemsArea.classList.remove('hidden');
+  itemsPanel.innerHTML='<strong>'+escapeHtml(selectedCategory.value)+'</strong><p class="muted">Add the items you want from this category and enter a quantity for each one.</p>';
+  itemRows.innerHTML='';
+  addItemRow();
+};
+// Category buttons use a direct inline click handler so mobile browsers activate them reliably.
+// No touchend preventDefault handler is used, avoiding suppression of normal tap/click behavior.
+document.getElementById('addItemBtn').addEventListener('click',addItemRow);
+document.getElementById('orderForm').addEventListener('submit', async e=>{
+  e.preventDefault();
+  const result=document.getElementById('orderResult');
+  if(payment.value==='OMT Wallet'){ alert('OMT Wallet is coming soon. Please choose another payment method.'); return; }
+  if(!selectedCategory.value){alert('Please choose one of the six categories above.');return;}
+  if(!itemRows.querySelector('.item-name')){alert('Please add at least one item.');return;}
+  if(!db){ alert('Connection is not ready. Please refresh and try again.'); return; }
+  const id='TDL-'+Date.now().toString(36).toUpperCase()+'-'+Math.random().toString(36).slice(2,6).toUpperCase();
+  const order={
+    id, customerName:document.getElementById('customerName').value.trim(),
+    phone:document.getElementById('phone').value.trim(),
+    town:document.getElementById('town').value,
+    category:selectedCategory.value,
+    items:Array.from(itemRows.querySelectorAll('.item-row')).map(row=>{const name=row.querySelector('.item-name').value.trim();const qty=row.querySelector('.item-qty').value;return name+' (Qty: '+qty+')';}).join('\n')+(document.getElementById('itemDetails').value.trim()?'\nDetails: '+document.getElementById('itemDetails').value.trim():''),
+    address:document.getElementById('address').value.trim(),
+    payment:payment.value, notes:document.getElementById('notes').value.trim(),
+    status:'Pending', createdAt:new Date().toISOString()
+  };
+  const submit=e.submitter; if(submit){submit.disabled=true;submit.textContent='Submitting...';}
+  try{
+    await db.ref('orders/'+id).set(order);
+    result.classList.remove('hidden');
+    result.innerHTML='<strong>Order submitted successfully!</strong><br>Your order number is <strong>'+escapeHtml(id)+'</strong>.<br>Status: <strong>Pending</strong>. Please save your order number.';
+    if(order.payment==='Whish Money'){
+      result.innerHTML+='<br><br><strong>Whish Money:</strong> +961 70 948 063<br>Please confirm the amount and payment steps with the delivery team before sending money.';
+    }
+    document.getElementById('lookupId').value=id;
+    result.scrollIntoView({behavior:'smooth',block:'center'});
+    document.getElementById('orderForm').reset(); itemRows.innerHTML=''; selectedCategory.value=''; document.querySelectorAll('.category-button').forEach(b=>b.classList.remove('selected')); itemsPanel.innerHTML='<strong>Choose a category above</strong>'; categoryItemsArea.classList.add('hidden'); updatePaymentInfo();
+  }catch(err){
+    console.error(err); alert('We could not submit your order. Please check your internet connection and try again.');
+  }finally{if(submit){submit.disabled=false;submit.textContent='Submit order';}}
+});
+function escapeHtml(value){return String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
+document.getElementById('lookupBtn').addEventListener('click',()=>{
+  const id=document.getElementById('lookupId').value.trim();
+  const box=document.getElementById('lookupResult'); box.classList.remove('hidden');
+  if(!id){box.textContent='Please enter your order number.';return;}
+  box.textContent='For privacy, customer status lookup is not enabled with the current Firebase rules. Please contact the delivery team and provide order number '+id+'.';
+});
+
+async function loadOrders(){
+  const msg=document.getElementById('adminMsg'), list=document.getElementById('ordersList');
+  msg.textContent='Loading orders...'; list.innerHTML='';
+  try{
+    const snap=await db.ref('orders').get();
+    const data=snap.val()||{};
+    const all=Object.values(data).sort((a,b)=>String(b.createdAt||'').localeCompare(String(a.createdAt||'')));
+    msg.textContent=all.length+' order(s) found.';
+    if(!all.length){list.innerHTML='<p class="muted">No orders yet.</p>';return;}
+    all.forEach(o=>{
+      const card=document.createElement('div');card.className='order';
+      card.innerHTML=`<div class="order-head"><strong>${escapeHtml(o.id)}</strong><span class="pill">${escapeHtml(o.status||'Pending')}</span></div>
+      <p><strong>${escapeHtml(o.customerName)}</strong> · ${escapeHtml(o.phone)}<br><span class="muted">${escapeHtml(o.createdAt||'')}</span></p>
+      <p><strong>Category:</strong> ${escapeHtml(o.category)}<br><strong>Items:</strong> ${escapeHtml(o.items)}<br><strong>Address:</strong> ${escapeHtml(o.address)}, ${escapeHtml(o.town)}<br><strong>Payment:</strong> ${escapeHtml(o.payment)}<br><strong>Notes:</strong> ${escapeHtml(o.notes||'—')}</p>
+      <div class="row"><div><label>Status</label><select class="status-select" data-id="${escapeHtml(o.id)}"><option ${o.status==='Pending'?'selected':''}>Pending</option><option ${o.status==='Confirmed'?'selected':''}>Confirmed</option><option ${o.status==='On the Way'?'selected':''}>On the Way</option><option ${o.status==='Delivered'?'selected':''}>Delivered</option><option ${o.status==='Cancelled'?'selected':''}>Cancelled</option></select></div><div style="align-self:end"><button type="button" data-save="${escapeHtml(o.id)}">Save status</button></div></div>`;
+      list.appendChild(card);
+    });
+    list.querySelectorAll('[data-save]').forEach(btn=>btn.addEventListener('click',async()=>{
+      const id=btn.dataset.save, select=list.querySelector('select[data-id="'+CSS.escape(id)+'"]');
+      btn.disabled=true;
+      try{await db.ref('orders/'+id+'/status').set(select.value);msg.textContent='Status updated for '+id+'.';await loadOrders();}
+      catch(err){console.error(err);msg.textContent='Could not update status. Check Firebase rules and sign-in.';btn.disabled=false;}
+    }));
+  }catch(err){console.error(err);msg.textContent='Could not load orders. Check that the signed-in admin UID is authorized in Firebase rules.';}
+}
+document.getElementById('loginBtn').addEventListener('click',async()=>{
+  const msg=document.getElementById('loginMsg'); msg.textContent='Signing in...';
+  try{
+    const cred=await auth.signInWithEmailAndPassword(document.getElementById('adminEmail').value.trim(),document.getElementById('adminPassword').value);
+    if(cred.user.uid!==ADMIN_UID){await auth.signOut();msg.textContent='This account is not authorized as the admin.';return;}
+    currentUser=cred.user;document.getElementById('adminLogin').classList.add('hidden');document.getElementById('adminArea').classList.remove('hidden');msg.textContent='';await loadOrders();
+  }catch(err){msg.textContent='Sign-in failed. Check the admin email and password.';}
+});
+document.getElementById('refreshBtn').addEventListener('click',loadOrders);
+document.getElementById('logoutBtn').addEventListener('click',async()=>{
+  await auth.signOut();currentUser=null;document.getElementById('adminArea').classList.add('hidden');document.getElementById('adminLogin').classList.remove('hidden');document.getElementById('ordersList').innerHTML='';document.getElementById('loginMsg').textContent='Signed out.';
+});
+if(auth) auth.onAuthStateChanged(user=>{
+  if(user && user.uid===ADMIN_UID){currentUser=user;document.getElementById('adminLogin').classList.add('hidden');document.getElementById('adminArea').classList.remove('hidden');loadOrders();}
+});
+</script>
+</body>
+</html>
