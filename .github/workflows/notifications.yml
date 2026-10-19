@@ -1,12 +1,5 @@
 
-name: Delivery Notifications
+name: Create notification
 
-'on':
-  workflow_dispatch: {}
-
-jobs:
-  notify:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Test workflow
-        run: echo "Workflow is running correctly."
+on:
+  workflow_dispatch:
