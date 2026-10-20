@@ -11,6 +11,7 @@ async function main() {
   if (!rawKey) throw new Error("Missing FIREBASE_SERVICE_ACCOUNT_JSON secret.");
 
   const serviceAccount = JSON.parse(rawKey);
+  console.log("Service account project:", serviceAccount.project_id);
 
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
