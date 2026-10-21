@@ -15,9 +15,7 @@ async function main() {
   const serviceAccount = JSON.parse(rawCredentials);
 
   if (serviceAccount.project_id !== PROJECT_ID) {
-    throw new Error(
-      `Wrong service account project: ${serviceAccount.project_id}`
-    );
+    throw new Error("Service account project does not match.");
   }
 
   admin.initializeApp({
@@ -27,35 +25,51 @@ async function main() {
 
   console.log("Firebase Admin initialized successfully.");
 
-  const snapshot = await admin
-    .database()
+  const snapshot = await admin.database()
     .ref("notificationTokens")
     .once("value");
 
   const records = snapshot.val() || {};
-  const tokens = [];
+  const devices = [];
 
-  for (const [uid, record] of Object.entries(records)) {
-    if (record && typeof record.token === "string" && record.token.trim()) {
-      tokens.push({ uid, token: record.token.trim() });
+  for (const [uid, userRecords] of Object.entries(records)) {
+    if (!userRecords || typeof userRecords !== "object") continue;
+
+    // Support both the older direct-token format and the current
+    // UID -> deviceKey -> { token, updatedAt, userAgent } format.
+    if (typeof userRecords.token === "string") {
+      devices.push({ uid, token: userRecords.token });
+      continue;
+    }
+
+    for (const [deviceKey, record] of Object.entries(userRecords)) {
+      if (record && typeof record.token === "string" && record.token.trim()) {
+        devices.push({
+          uid,
+          deviceKey,
+          token: record.token.trim()
+        });
+      }
     }
   }
 
-  console.log(`Saved device tokens found: ${tokens.length}`);
+  console.log(`Saved device tokens found: ${devices.length}`);
 
-  if (tokens.length === 0) {
-    throw new Error(
-      "No usable device tokens found at notificationTokens/{uid}/token."
-    );
+  if (devices.length === 0) {
+    console.log("No usable tokens found. Check the saved database structure.");
+    return;
   }
 
-  for (const device of tokens) {
+  let successes = 0;
+  let failures = 0;
+
+  for (const device of devices) {
     try {
       const messageId = await admin.messaging().send({
         token: device.token,
         notification: {
           title: "Trending Delivery Lebanon — Test",
-          body: "Push notifications are working. This is a test only."
+          body: "This is a test notification. No order was created."
         },
         data: {
           type: "notification_test",
@@ -68,21 +82,24 @@ async function main() {
         }
       });
 
-      console.log(`SUCCESS: A push was accepted for device UID ${device.uid}.`);
+      successes++;
+      console.log(`PUSH ACCEPTED for device ${device.deviceKey || "default"}.`);
       console.log(`Message ID: ${messageId}`);
     } catch (error) {
+      failures++;
       console.error(
-        `FAILED for device UID ${device.uid}:`,
+        `PUSH FAILED for device ${device.deviceKey || "default"}:`,
         error.code || error.message
       );
-      process.exitCode = 1;
     }
   }
 
-  console.log("Push test completed.");
+  console.log(`Test finished: ${successes} accepted, ${failures} failed.`);
+
+  if (failures > 0) process.exitCode = 1;
 }
 
-main().catch((error) => {
+main().catch(error => {
   console.error("PUSH TEST FAILED:", error.code || error.message);
   process.exitCode = 1;
 });
