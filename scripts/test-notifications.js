@@ -22,7 +22,9 @@ async function main() {
     credential: admin.credential.cert(serviceAccount),
     databaseURL: DATABASE_URL
   });
-
+console.log("Credential project:", serviceAccount.project_id);
+console.log("Credential email:", serviceAccount.client_email);
+console.log("Expected project: trending-delivery-lebanon");
   console.log("Firebase Admin initialized successfully.");
 
   const snapshot = await admin.database()
